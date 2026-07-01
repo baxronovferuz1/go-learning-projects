@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRouters(router, *gin.Engine) {
+func SetupRouters(router *gin.Engine) {
 	router.GET("/", controller.Home)
 	router.GET("/students", controller.GetStudents)
 }
