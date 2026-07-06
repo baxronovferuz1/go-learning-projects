@@ -1,8 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"student-manager/database"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
+
+	database.Connect()
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
