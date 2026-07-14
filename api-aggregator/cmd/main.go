@@ -1,3 +1,11 @@
+// main()
+
+// --LoadConfig() -config
+// --Connect()    database/postgres
+// --Migrate()
+// --Gin Router
+// --Run()
+
 package main
 
 import (
