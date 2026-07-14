@@ -9,18 +9,35 @@
 package main
 
 import (
+	"api-aggregator/config"
+	"api-aggregator/database"
 	"api-aggregator/router"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	conf, err := config.LoadConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// database.ConnectDB()
+	db, err := database.Connect(conf)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if err := database.Migrate(db); err != nil {
+		log.Fatal(err)
+	}
+
 	r := gin.Default()
 
 	router.SetupRoutes(r)
 
-	r.Run(":8080")
+	if err := r.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 
 }

@@ -2,6 +2,7 @@ package database
 
 import (
 	"api-aggregator/config"
+	"api-aggregator/models"
 	"fmt"
 	"log"
 
@@ -28,4 +29,19 @@ func Connect(conf *config.Config) (*gorm.DB, error) {
 	log.Println(("Database connected succesfully"))
 
 	return db, nil
+}
+
+func Migrate(db *gorm.DB) error {
+	err := db.AutoMigrate(
+		&models.User{},
+		&models.Order{},
+		&models.Notification{},
+	)
+
+	if err != nil {
+		return err
+	}
+	log.Println("database migrated successfully")
+
+	return nil
 }
