@@ -1,7 +1,11 @@
 package models
 
+import (
+	"api-aggregator/repositories"
+)
+
 type DashboardResponse struct {
-	User          User           `json:"user"`
-	Orders        []Order        `json:"orders"`
-	Notifications []Notification `json:"notifications"`
+	userRepo          *repositories.UserRepository
+	orderRepo         *repositories.OrderRepository
+	notificationsRepo *repositories.NotificationRepository
 }
